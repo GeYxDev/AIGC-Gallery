@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.mapper.DetailsMapper">
+
+    <select id="selectWorksDetail" resultType="dao.entity.Details">
+        SELECT
+            w.work_id,
+            w.media_width,
+            w.media_height,
+            w.model_type,
+            w.iteration,
+            v.video_link,
+            i.image
+        FROM
+            Works w
+                LEFT JOIN
+            Videos v ON w.work_id = v.work_id
+                LEFT JOIN
+            Images i ON w.work_id = i.work_id
+        WHERE
+            w.group_id = #{groupId}
+        ORDER BY
+            w.work_id
+    </select>
+
+</mapper>

@@ -1,0 +1,13 @@
+<!--点击换项框-->
+
+<!--显示默认选项或已选择选项，点击后进行选项的切换与显示-->
+<view class="select-container" bind:tap="handleChangeOptionOperation">
+  <!--项目标题-->
+  <text class="select-text">{{ title }}</text>
+
+  <!--当前选择-->
+  <text class="select-text" overflow="ellipsis" max-lines="1">{{ currentOption }}</text>
+
+  <!--指示图标-->
+  <image class="select-icon" src="/images/switch.png"></image>
+</view>

@@ -1,0 +1,96 @@
+<!--个人主页，显示个人信息、个人作品与关注者作品-->
+
+<!--顶部覆盖区-->
+<view class="individual-cover" wx:if="{{ showTopCover }}" style="height: {{ navigationBarHeight }}px;"></view>
+
+<!--主页-->
+<view class="individual-container">
+  <!--主页内容显示-->
+  <scroll-view class="individual-display" style="height: {{ windowHeight }}px;" scroll-y show-scrollbar="{{ false }}" enhanced bindscrolltolower="onReachBottom" bindscroll="onShowTopCover">
+    <!--个人信息-->
+    <view class="individual-info">
+      <!--头像与设置-->
+      <view class="individual-func">
+        <!--头像-->
+        <image class="individual-avatar" src="{{ loginData.avatar }}" bind:tap="modifyAvatar"></image>
+
+        <!--设置-->
+        <view class="individual-settings" bind:tap="showIndividualSettingsMenu">个人设置</view>
+      </view>
+
+      <!--昵称-->
+      <text class="individual-nickname" overflow="ellipsis">{{ loginData.nickname }}</text>
+
+      <!--关注与粉丝数-->
+      <view class="individual-social">
+        <!--关注-->
+        <view class="individual-follow">
+          <text class="individual-data" overflow="ellipsis">{{ follow.followedNum }}</text>
+          <view class="individual-text">关注</view>
+        </view>
+
+        <!--粉丝-->
+        <view class="individual-follow">
+          <text class="individual-data" overflow="ellipsis">{{ follow.followerNum }}</text>
+          <view class="individual-text">粉丝</view>
+        </view>
+      </view>
+    </view>
+
+    <!--个人作品展示-->
+    <view class="individual-exhibit" style="min-height: {{ !(showFirstLoading || showFailLoad) ? 0 : individualMomentDisplayAreaHeight }}px;">
+      <!--首次加载提示-->
+      <mp-loading class="individual-load" wx:if="{{ showFirstLoading }}" type="dot-gray"></mp-loading>
+
+      <!--加载失败提示-->
+      <text class="individual-fail" wx:if="{{ showFailLoad }}" bind:tap="openLoadIndividualMoment">加载失败，点击重试</text>
+
+      <!--按年显示作品-->
+      <view wx:for="{{ momentList }}" class="individual-year" wx:key="year" wx:for-item="yearItem">
+        <!--年份标签-->
+        <view wx:if="{{ yearItem.year != currentYear }}" class="individual-year-label">{{ yearItem.year }}年</view>
+        
+        <!--按日月显示作品-->
+        <view wx:for="{{ yearItem.content }}" class="individual-time" wx:key="tag" wx:for-item="timeItem">
+          <!--日月标签-->
+          <view class="individual-time-label">
+            <view class="individual-time-day">
+              {{ timeItem.day }}
+              <view class="individual-time-month">{{ timeItem.month }}月</view>
+            </view>
+          </view>
+
+          <!--动态展示-->
+          <view class="individual-moment">
+            <!--动态-->
+            <view wx:for="{{ timeItem.content }}" class="individual-moment-item" wx:key="groupId" wx:for-item="momentItem">
+              <!--作品主题与正文-->
+              <view class="individual-content">
+                <!--作品主题-->
+                <text class="individual-content-theme">{{ momentItem.theme }}</text>
+
+                <!--作品正文-->
+                <text class="individual-content-text">{{ momentItem.text }}</text>
+              </view>
+
+              <!--作品图片或视频-->
+              <view class="individual-media">
+                <!--作品图片展示-->
+                <image wx:if="{{ momentItem.type === 'image' }}" wx:for="{{ momentItem.media }}" wx:for-item="imageItem" wx:key="workId" data-image="{{ imageItem.image }}" class="individual-media" src="{{ imageItem.image }}" style="width: {{ convRate * (momentItem.workNum === 1 ? (momentItem.aspectRatio >= 1 ? 360 : 360 * momentItem.aspectRatio) : 160) }}px; height: {{ convRate * (momentItem.workNum === 1 ? (momentItem.aspectRatio >= 1 ? 360 / momentItem.aspectRatio : 360) : 160) }}px;" bind:tap="onTapImage" mode="aspectFill"></image>
+
+                <!--作品视频展示-->
+                <image wx:if="{{ momentItem.type === 'video' }}" data-video="{{ momentItem.media.videoLink }}" data-cover="{{ momentItem.media.cover }}" class="individual-media" src="{{ momentItem.media.cover }}" style="width: {{ convRate * (momentItem.aspectRatio >= 1 ? 360 : 360 * momentItem.aspectRatio) }}px; height: {{ convRate * (momentItem.aspectRatio >= 1 ? 360 / momentItem.aspectRatio : 360) }}px;" bind:tap="onTapVideo" mode="aspectFill"></image>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!--继续加载提示-->
+    <text class="individual-next-load">{{ nextLoadTip }}</text>
+  </scroll-view>
+</view>
+
+<!--弹出个人信息设置菜单-->
+<mp-actionSheet bindactiontap="individualSettingsClick" show="{{ showIndividualSettings }}" actions="{{ individualSettingsItem }}" title="个人设置"></mp-actionSheet>

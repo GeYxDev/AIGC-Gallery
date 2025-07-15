@@ -1,0 +1,25 @@
+<!--此页面为欢迎页面，显示标题、图像与轻按提示-->
+<!--用户向上轻扫后进入主页-->
+
+<!--垂直滑动手势区域-->
+<vertical-drag-gesture-handler onGestureEvent="slideToBeginGesture">
+  <view class="gesture-container"></view>
+</vertical-drag-gesture-handler>
+
+<view class="container" id="slideToBeginGesture" style="margin-top: {{ topMarginHeight }}px;">
+  <!--顶部标题-->
+  <view class="title-container" bind:tap="jumpToMain">
+    <image src="/images/aigc_gallery.png" mode="heightFix" class="title"></image>
+    <text class="subtitle">Witness the thoughts.</text>
+  </view>
+
+  <!--中间图像-->
+  <view class="image-container">
+    <image src="/images/welcome.png" mode="heightFix" class="image"></image>
+  </view>
+
+  <!--底部提示-->
+  <view class="tip-container">
+    <view class="tip" id="tipAnimation">向上轻扫以开始</view>
+  </view>
+</view>

@@ -1,0 +1,145 @@
+<!--作品创作页，通过三种深度学习完成多模态创作-->
+
+<!--作品创作页-->
+<view class="imagine-container" style="height: {{ displayAreaHeight }}px;">
+  <!--滚动容器，防止页面过长超出显示区域-->
+  <scroll-view scroll-y class="imagine-scroll" style="height: {{ showReleaseArt ? scrollAreaHeight : displayAreaHeight }}px;" type="list" show-scrollbar="{{ false }}" enhanced>
+    <!--创作类型选择与作品展示区-->
+    <view class="imagine-select">
+      <!--图像作品展示-->
+      <view class="imagine-select-show" wx:if="{{ artType === 'image' && artList.length > 0 }}" wx:for="{{ artList }}" wx:key="tempId" index="{{ index }}" item="{{ item }}" data-temp="{{ item.tempId }}" bind:tap="imageArtPreview" bind:longtap="showImageArtMoreMenu">
+        <image class="imagine-select-show-image" src="{{ item.image }}" mode="{{ item.aspectRatio > 1 ? 'heightFix' : 'widthFix' }}"></image>
+      </view>
+
+      <!--视频作品展示-->
+      <view class="imagine-select-show" wx:if="{{ artType === 'video' && artList.length > 0 }}" data-temp="{{ artList[0].tempId }}" bind:tap="videoArtPreview" bind:longtap="showVideoArtMoreMenu">
+        <image class="imagine-select-show-video" src="{{ artList[0].cover }}" mode="{{ item.aspectRatio > 1 ? 'heightFix' : 'widthFix' }}"></image>
+      </view>
+
+      <!--图像创作-->
+      <view class="imagine-select-add {{ artType === 'image' ? 'active' : 'inactive' }}" wx:if="{{ (artList.length === 0 || artType === 'image') && artList.length < 9 }}" bind:tap="selectToCreateImageArt">
+        <image class="imagine-select-add-icon" src="/images/imagine_picture.png"></image>
+        <text class="imagine-select-add-text">图片+</text>
+      </view>
+
+      <!--视频创作-->
+      <view class="imagine-select-add {{ artType === 'video' ? 'active' : 'inactive' }}" wx:if="{{ (artList.length === 0 || artType === 'video') && artList.length < 1 }}" bindtap="selectToCreateVideoArt">
+        <image class="imagine-select-add-icon" src="/images/imagine_video.png"></image>
+        <text class="imagine-select-add-text">视频+</text>
+      </view>
+    </view>
+
+    <!--作品生成-->
+    <view class="imagine-create">
+      <!--图片作品-->
+      <view class="imagine-create-image" wx:if="{{ artType === 'image' && artList.length < 9 }}">
+        <!--生成类型提示-->
+        <text class="imagine-create-type"># 图片将在您的描述下生成</text>
+
+        <!--提示词与参数选择-->
+        <view class="imagine-create-input">
+          <!--提示词-->
+          <textarea class="imagine-create-text" value="{{ artTextData.cueWord }}" disabled="{{ textGenerateStatus.cueWord }}" placeholder="{{ !textGenerateStatus.cueWord ? '在这里输入您的描述吧，可仅输入关键词让DeepSeek为您生成描述哦～' : 'DeepSeek处理中……' }}" maxlength="100" auto-height data-type="imagine-create-text" adjust-position bindinput="cueWordInputChange" bindfocus="inputAutoScroll" bindblur="resetScrollFill"></textarea>
+
+          <!--参数配置-->
+          <view class="imagine-create-setting">
+            <!--模型类型-->
+            <select title="模型：" optionList="{{ ['VQGAN', 'BigGAN'] }}" bind:handleOptionChange="imageGenerateModelChange"></select>
+            
+            <!--迭代次数-->
+            <select title="迭代次数：" optionList="{{ ['300', '500', '800', '1000'] }}" bind:handleOptionChange="imageIterationNumberChange"></select>
+
+            <!--功能区-->
+            <view class="imagine-create-func">
+              <!--AI撰写-->
+              <image class="imagine-create-icon" wx:if="{{ !textGenerateStatus.cueWord }}" src="/images/ai.png" data-type="cueWord" bind:tap="requestTextProcess"></image>
+              <image class="imagine-create-icon" wx:else src="/images/loading.png"></image>
+
+              <!--生成请求-->
+              <view class="imagine-create-send" bind:tap="sendArtCreateParameter">发送</view>
+            </view>
+          </view>
+        </view>
+      </view>
+
+      <!--视频作品-->
+      <view class="imagine-create-video" wx:if="{{ artType === 'video' && artList.length < 1 }}">
+        <!--生成类型提示-->
+        <text class="imagine-create-type"># 视频将在您的描述下生成</text>
+
+        <!--提示词与参数选择-->
+        <view class="imagine-create-input">
+          <!--提示词-->
+          <textarea class="imagine-create-text" value="{{ artTextData.cueWord }}" disabled="{{ textGenerateStatus.cueWord }}" placeholder="{{ !textGenerateStatus.cueWord ? '在这里输入您的描述吧，可仅输入关键词让DeepSeek为您生成描述哦～' : 'DeepSeek处理中……' }}" maxlength="100" auto-height data-type="imagine-create-text" adjust-position bindinput="cueWordInputChange" bindfocus="inputAutoScroll" bindblur="resetScrollFill"></textarea>
+
+          <!--参数配置-->
+          <view class="imagine-create-setting">
+            <!--模型类型-->
+            <select title="模型：" optionList="{{ ['LTX-Video', 'CogVideo'] }}" bind:handleOptionChange="videoGenerateModelChange"></select>
+
+            <!--生成时长-->
+            <select title="生成时长：" optionList="{{ ['3S', '6S'] }}"  bind:handleOptionChange="videoGenerateDurationChange"></select>
+
+            <!--功能区-->
+            <view class="imagine-create-func">
+              <!--AI撰写-->
+              <image class="imagine-create-icon" wx:if="{{ !textGenerateStatus.cueWord }}" src="/images/ai.png" data-type="cueWord" bind:tap="requestTextProcess"></image>
+              <image class="imagine-create-icon" wx:else src="/images/loading.png"></image>
+
+              <!--生成请求-->
+              <view class="imagine-create-send" bind:tap="sendArtCreateParameter">发送</view>
+            </view>
+          </view>
+        </view>
+      </view>
+
+      <!--生成进度-->
+      <view class="imagine-create-progress" wx:if="{{ isArtGenerating }}">
+        <!--生成状态-->
+        <view class="imagine-create-progress-pointer">{{ artGeneratePointer }}</view>
+        
+        <!--生成进度条-->
+        <view class="imagine-create-progress-frame">
+          <view class="imagine-create-progress-rate" style="width: {{ artGenerateProgress + '%'}};"></view>
+        </view>
+      </view>
+    </view>
+
+    <!--主题与正文输入区-->
+    <view class="imagine-describe">
+      <!--主题输入-->
+      <view class="imagine-describe-theme">
+        <textarea class="imagine-describe-theme-text" value="{{ artTextData.theme }}" disabled="{{ textGenerateStatus.theme }}" placeholder="{{ !textGenerateStatus.theme ? '添加标题' : '标题生成中……' }}" maxlength="50" auto-height data-type="imagine-describe-theme-text" adjust-position bindinput="themeInputChange" bindfocus="inputAutoScroll" bindblur="resetScrollFill"></textarea>
+        <image class="imagine-describe-icon" wx:if="{{ !textGenerateStatus.theme }}" src="/images/ai.png" data-type="theme" bind:tap="requestTextProcess"></image>
+        <image class="imagine-describe-icon" wx:else src="/images/loading.png"></image>
+      </view>
+
+      <!--正文输入-->
+      <view class="imagine-describe-content">
+        <textarea class="imagine-describe-content-text" value="{{ artTextData.content }}" disabled="{{ textGenerateStatus.content }}" placeholder="{{ !textGenerateStatus.content ? '添加正文' : '正文生成中……' }}" maxlength="500" auto-height data-type="imagine-describe-content-text" adjust-position bindinput="contentInputChange" bindfocus="inputAutoScroll" bindblur="resetScrollFill"></textarea>
+        <image class="imagine-describe-icon" wx:if="{{ !textGenerateStatus.content }}" src="/images/ai.png" data-type="content" bind:tap="requestTextProcess"></image>
+        <image class="imagine-describe-icon" wx:else src="/images/loading.png"></image>
+      </view>
+    </view>
+
+    <!--附加选项-->
+    <view class="imagine-attach">
+      <!--保存图片至相册-->
+      <view class="imagine-attach-save" bind:tap="changeSaveToAlbumStatusOperation">
+        <view class="imagine-attach-save-mark {{ isSaveToAlbum ? 'active' : 'inactive'}}"></view>
+        <view class="imagine-attach-save-text">保存作品至相册</view>
+      </view>
+    </view>
+
+    <!--滚动填充-->
+    <view style="width: 100%; height: {{ keyboardHeight }}px;"></view>
+  </scroll-view>
+
+  <!--发布作品-->
+  <view class="imagine-func" wx:if="{{ showReleaseArt }}">
+    <view class="publish-func-release" bindtap="handleReleaseOperation">发布艺术</view>
+  </view>
+</view>
+
+<!--弹出作品更多菜单-->
+<mp-actionSheet bindactiontap="handleArtMoreMenuClick" show="{{ artMoreMenu.show }}" actions="{{ artMoreMenu.item }}" title="更多"></mp-actionSheet>

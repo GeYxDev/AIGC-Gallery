@@ -1,0 +1,114 @@
+.card-container {
+  width: 100%;
+  flex-shrink: 0;
+  border-radius: 5px;
+  overflow: hidden;
+  margin-top: 6px;
+  box-sizing: border-box;
+  background-color: #fff;
+}
+
+.card-share {
+  width: 100%;
+  height: 100%;
+}
+
+.card-locate {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.card-display {
+  position: absolute;
+  width: 100%;
+  display: flex;
+  transform-origin: 0 0;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.card-media {
+  width: 100%;
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+}
+
+.card-desc {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.card-theme {
+  height: 36px;
+  padding-top: 6px;
+  padding-right: 8px;
+  padding-left: 8px;
+  padding-bottom: 16px;
+  color: #000;
+  font-size: 14px;
+  font-weight: bold;
+  box-sizing: border-box;
+}
+
+.card-function {
+  height: 20px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.card-ident {
+  height: 20px;
+  width: 60%;
+  padding-left: 8px;
+  padding-bottom: 8px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.card-avatar {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+.card-nickname {
+  flex: 1;
+  font-size: 12px;
+  padding-left: 4px;
+  color: #666;
+  box-sizing: border-box;
+}
+
+.card-interact {
+  height: 20px;
+  width: 40%;
+  padding-top: 2px;
+  padding-left: 2px;
+  padding-right: 8px;
+  padding-bottom: 8px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.card-like-num {
+  flex: 1;
+  font-size: 10px;
+  padding-right: 2px;
+  color: #bfbfbf;
+  text-align: right;
+  box-sizing: border-box;
+}
+
+.card-like-icon {
+  width: auto;
+  height: 10px;
+}

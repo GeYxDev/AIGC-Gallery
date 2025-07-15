@@ -1,0 +1,395 @@
+.imagine-container {
+  position: relative;
+  flex: 1;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  box-sizing: border-box;
+  background-color: #fff;
+}
+
+.imagine-scroll {
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  background-color: transparent;
+  box-sizing: border-box;
+  z-index: 20;
+}
+
+.imagine-select {
+  width: 714rpx;
+  height: auto;
+  padding-top: 18rpx;
+  padding-left: 18rpx;
+  margin-top: 30rpx;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: flex-start;
+  box-sizing: border-box;
+}
+
+.imagine-select-show {
+  width: 226rpx;
+  height: 226rpx;
+  margin-right: 18rpx;
+  margin-bottom: 18rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1rpx solid #ddd;
+  border-radius: 10rpx;
+  background-color: #fafafa;
+  box-sizing: border-box;
+}
+
+.imagine-select-show-image {
+  width: 226rpx;
+  height: 226rpx;
+  border-radius: 10rpx;
+}
+
+.imagine-select-show-video {
+  width: 226rpx;
+  height: 226rpx;
+  border-radius: 10rpx;
+}
+
+.imagine-select-add.active {
+  width: 226rpx;
+  height: 226rpx;
+  padding-top: 16rpx;
+  margin-right: 18rpx;
+  margin-bottom: 18rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1rpx solid #ddd;
+  border-radius: 10rpx;
+  background-color: #fefefe;
+  box-sizing: border-box;
+}
+
+.imagine-select-add.inactive {
+  width: 226rpx;
+  height: 226rpx;
+  padding-top: 16rpx;
+  margin-right: 18rpx;
+  margin-bottom: 18rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1rpx solid #ddd;
+  border-radius: 10rpx;
+  background-color: #fafafa;
+  box-sizing: border-box;
+}
+
+.imagine-select-add-icon {
+  width: 80rpx;
+  height: 80rpx;
+}
+
+.imagine-select-add-text {
+  font-size: 20rpx;
+  color: #666;
+}
+
+.imagine-create {
+  width: 714rpx;
+  height: auto;
+  padding-bottom: 10rpx;
+  margin-top: 8rpx;
+  margin-left: 18rpx;
+  margin-right: 18rpx;
+  border-bottom: .5px solid #cecece;
+  box-sizing: border-box;
+}
+
+.imagine-create-image {
+  width: 100%;
+  height: auto;
+  padding: 5rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+.imagine-create-video {
+  width: 100%;
+  height: auto;
+  padding: 5rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+.imagine-create-type {
+  margin-left: 5rpx;
+  font-size: 22rpx;
+  color: #bbb;
+}
+
+.imagine-create-input {
+  width: 100%;
+  height: auto;
+  padding: 15rpx 20rpx;
+  margin-top: 8rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  border: 0.2rpx solid #777;
+  border-radius: 30rpx;
+  box-shadow: 0 0 5rpx 5rpx rgba(192, 192, 192, 0.1);
+  box-sizing: border-box;
+}
+
+.imagine-create-text {
+  width: 100%;
+  height: auto;
+  min-height: 145rpx;
+  color: #000;
+  font-size: 26rpx;
+}
+
+.imagine-create-setting {
+  width: 100%;
+  height: 55rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: flex-start;
+}
+
+.imagine-create-func {
+  flex: 1;
+  width: auto;
+  height: 50rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  box-sizing: border-box;
+}
+
+.imagine-create-icon {
+  width: 55rpx;
+  height: 55rpx;
+  padding: 8rpx 8rpx;
+  border: 2rpx solid #999;
+  border-radius: 27rpx;
+  box-sizing: border-box;
+}
+
+.imagine-create-send {
+  width: auto;
+  height: 55rpx;
+  padding: 0 20rpx;
+  margin-left: 10rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #222;
+  font-size: 24rpx;
+  border: 2rpx solid #999;
+  border-radius: 27rpx;
+  background-color: #fcfcfc;
+  box-sizing: border-box;
+}
+
+.imagine-create-progress {
+  width: 704rpx;
+  height: auto;
+  margin: 6rpx 5rpx 24rpx 5rpx;
+  padding: 0 10rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  box-sizing: border-box;
+}
+
+.imagine-create-progress-pointer {
+  width: auto;
+  height: 40rpx;
+  margin-right: 10rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #666;
+  font-size: 20rpx;
+  box-sizing: border-box;
+}
+
+.imagine-create-progress-frame {
+  flex: 1;
+  width: auto;
+  height: 10rpx;
+  margin: 15rpx 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  border: 2rpx solid #bbb;
+  border-radius: 5rpx;
+  box-sizing: border-box;
+}
+
+.imagine-create-progress-rate {
+  height: 10rpx;
+  border-radius: 5rpx;
+  background-color: #ccc;
+}
+
+.imagine-describe {
+  width: 714rpx;
+  height: auto;
+  margin-top: 20rpx;
+  margin-left: 18rpx;
+  margin-right: 18rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  box-sizing: border-box;
+}
+
+.imagine-describe-theme {
+  width: 100%;
+  height: auto;
+  margin-bottom: 24rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  box-sizing: border-box;
+}
+
+.imagine-describe-theme-text {
+  flex: 1;
+  width: auto;
+  height: auto;
+  color: #000;
+  font-size: 34rpx;
+  font-weight: bolder;
+}
+
+.imagine-describe-content {
+  width: 100%;
+  height: auto;
+  margin-bottom: 30rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  box-sizing: border-box;
+}
+
+.imagine-describe-content-text {
+  flex: 1;
+  width: auto;
+  height: auto;
+  min-height: 200rpx;
+  color: #222;
+  font-size: 30rpx;
+}
+
+.imagine-describe-icon {
+  width: 50rpx;
+  height: 50rpx;
+  padding: 8rpx 8rpx;
+  margin: 0 8rpx;
+  opacity: 0.8;
+  border: 1rpx solid #999;
+  border-radius: 25rpx;
+  box-sizing: border-box;
+}
+
+.imagine-attach {
+  width: 714rpx;
+  height: auto;
+  padding-top: 10rpx;
+  margin-left: 18rpx;
+  margin-right: 18rpx;
+  margin-bottom: 20rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  border-top: .5px solid #cecece;
+  box-sizing: border-box;
+}
+
+.imagine-attach-save {
+  width: 100%;
+  height: 30rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  box-sizing: border-box;
+}
+
+.imagine-attach-save-mark.active {
+  width: 16rpx;
+  height: 16rpx;
+  margin: 7rpx;
+  border: 1rpx solid #555;
+  border-radius: 8rpx;
+  background-color: #555;
+  box-sizing: border-box;
+}
+
+.imagine-attach-save-mark.inactive {
+  width: 16rpx;
+  height: 16rpx;
+  margin: 7rpx;
+  border: 1rpx solid #555;
+  border-radius: 8rpx;
+  background-color: #fff;
+  box-sizing: border-box;
+}
+
+.imagine-attach-save-text {
+  width: auto;
+  height: 30rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #555;
+  font-size: 22rpx;
+}
+
+.imagine-func {
+  width: 100%;
+  height: 100rpx;
+  padding: 10rpx 50rpx 30rpx 50rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  z-index: 50;
+}
+
+.publish-func-release {
+  width: 100%;
+  height: 60rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #555;
+  font-size: 28rpx;
+  border: 2.5rpx solid #777;
+  border-radius: 45rpx;
+}

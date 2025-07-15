@@ -1,0 +1,9 @@
+{
+  "usingComponents": {
+    "roam": "/components/roam/roam",
+    "moment": "/components/moment/moment",
+    "imagine": "/components/imagine/imagine",
+    "navigation": "/components/navigation/navigation",
+    "tarbar": "/components/tarbar/tarbar"
+  }
+}

@@ -1,0 +1,82 @@
+<!--修改页-->
+
+<!--修改页容器-->
+<view class="modify-container" style="margin-top: {{ topMarginHeight }}px;">
+  <!--画廊标志以及欢迎词-->
+  <view class="modify-welcome">
+    <!--画廊标志-->
+    <image class="modify-logo" src="/images/aigc_gallery.png" mode="widthFix"></image>
+
+    <!--欢迎词-->
+    <text class="modify-word">{{ modifyType === 'password' ? 'Keep safe.' : 'A new style.' }}</text>
+  </view>
+
+  <!--修改密码区-->
+  <view class="modify-area" wx:if="{{ modifyType === 'password' }}">
+    <!--旧密码输入区-->
+    <view class="modify-input-area">
+      <!--旧密码区包装-->
+      <view class="modify-input-package">
+        <!--旧密码输入框-->
+        <input class="modify-input-unit" placeholder="Input old password" maxlength="16" password="{{ !oldPasswordVisibility }}" bindinput="oldPasswordInputChange"></input>
+
+        <!--旧密码可视化-->
+        <image class="modify-input-visible" src="{{ oldPasswordVisibility ? '/images/visible.png' : '/images/invisible.png' }}" mode="widthFix" bind:tap="changeOldPasswordVisibility"></image>
+      </view>
+
+      <!--旧密码输入错误提示-->
+      <text class="modify-input-error">{{ errors.oldPassword }}</text>
+    </view>
+
+    <!--密码输入区-->
+    <view class="modify-input-area">
+    <!--密码区包装-->
+      <view class="modify-input-package">
+        <!--密码输入框-->
+        <input class="modify-input-unit" placeholder="Think of a new password" maxlength="16" password="{{ !passwordVisibility }}" bindinput="passwordInputChange"></input>
+
+        <!--密码可视化-->
+        <image class="modify-input-visible" src="{{ passwordVisibility ? '/images/visible.png' : '/images/invisible.png' }}" mode="widthFix" bind:tap="changePasswordVisibility"></image>
+      </view>
+
+      <!--密码输入错误提示-->
+      <text class="modify-input-error">{{ errors.password }}</text>
+    </view>
+
+    <!--确认密码输入区-->
+    <view class="modify-input-area">
+    <!--确认密码区包装-->
+      <view class="modify-input-package">
+        <!--确认密码输入框-->
+        <input class="modify-input-unit" placeholder="Confirm your password" maxlength="16" password="{{ !confirmPasswordVisibility }}" bindinput="confirmPasswordInputChange"></input>
+
+        <!--确认密码可视化-->
+        <image class="modify-input-visible" src="{{ confirmPasswordVisibility ? '/images/visible.png' : '/images/invisible.png' }}" mode="widthFix" bind:tap="changeConfirmPasswordVisibility"></image>
+      </view>
+
+      <!--确认密码输入错误提示-->
+      <text class="modify-input-error">{{ errors.confirmPassword }}</text>
+    </view>
+  </view>
+
+  <!--修改昵称区-->
+  <view class="modify-area" wx:else>
+    <!--昵称输入区-->
+    <view class="modify-input-area">
+      <!--昵称输入框-->
+      <input class="modify-input-unit" placeholder="Create a new nickname" maxlength="20" bindinput="nicknameInputChange"></input>
+
+      <!--昵称输入错误提示-->
+      <text class="modify-input-error">{{ errors.nickname }}</text>
+    </view>
+
+    <!--填充区-->
+    <view class="modify-input-fill"></view>
+  </view>
+
+  <!--点按修改-->
+  <view class="modify-click-area">
+    <!--注册修改-->
+    <view class="modify-click-button" bind:tap="commitModifyOperation">修改</view>
+  </view>
+</view>

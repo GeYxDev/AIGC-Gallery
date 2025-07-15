@@ -1,0 +1,45 @@
+<!--自定义tarbar-->
+
+<!--tarbar容器-->
+<view class="tarbar-container" style="height: {{ tarbarTotalHeight }}px;">
+  <!--tarbar实际响应区-->
+  <view class="tarbar-response">
+    <!--tarbar左侧按钮：主页-->
+    <view
+      class="tarbar-nav-button"
+      data-id="roam"
+      bind:tap="functionChooseAndJumpEvent"
+    >
+      <image
+        src="{{ navId === 'roam' ? '/images/index/selected_roam.png' : '/images/index/roam.png' }}"
+        class="tarbar-nav-icon"
+      ></image>
+      <text class="tarbar-nav-text {{ navId === 'roam' ? 'active-text' : 'inactive-text' }}">浏览</text>
+    </view>
+
+    <!--tarbar中间按钮：创作-->
+    <view
+      class="tarbar-nav-center"
+      data-id="imagine"
+      bind:tap="functionChooseAndJumpEvent"
+    >
+      <image src="/images/index/imagine.png" class="tarbar-nav-center-icon"></image>
+    </view>
+
+    <!--tarbar右侧按钮：动态-->
+    <view
+      class="tarbar-nav-button"
+      data-id="news"
+      bind:tap="functionChooseAndJumpEvent"
+    >
+      <image
+        src="{{ navId === 'news' ? '/images/index/selected_news.png' : '/images/index/news.png' }}"
+        class="tarbar-nav-icon"
+      ></image>
+      <text class="tarbar-nav-text {{ navId === 'news' ? 'active-text' : 'inactive-text' }}">动态</text>
+    </view>
+  </view>
+
+  <!--tarbar底部安全区-->
+  <view class="tarbar-safe" style="height: {{ tarbarSafeHeight }}px;"></view>
+</view>

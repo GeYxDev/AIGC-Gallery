@@ -1,0 +1,34 @@
+<!--关注圈页-->
+
+<!--关注圈页容器-->
+<view class="moment-container" style="height: {{ displayAreaHeight }}px;">
+  <!--首次加载提示-->
+  <mp-loading class="moment-load" wx:if="{{ showFirstLoading }}" type="dot-gray"></mp-loading>
+  
+  <!--加载失败提示-->
+  <text class="moment-fail" wx:if="{{ showFailLoad }}" bind:tap="openLoadArt">加载失败，点击重试</text>
+
+  <!--滚动容器-->
+  <scroll-view class="moment-scroll" style="height: {{ displayAreaHeight }}px;" scroll-y type="list" show-scrollbar="{{ false }}" enhanced bindscrolltolower="onReachBottom">
+    <!--动态列表-->
+    <record wx:for="{{ momentList }}" wx:key="groupId" index="{{ index }}" item="{{ item }}" id="record-{{ item.groupId }}" bind:addComment="rouseInputBox" bind:deleteMyMoment="deleteMyMoment"></record>
+
+    <!--继续加载提示-->
+    <text class="moment-next">{{ nextLoadTip }}</text>
+  </scroll-view>
+</view>
+
+<!--隐藏式文本输入框和聚焦弱化层-->
+<view class="moment-hidden-cover" wx:if="{{ iuputInfo.showInputBox }}">
+  <!--触摸取消区-->
+  <view class="moment-hidden-cancel" bind:tap="cancelCommentHandle"></view>
+
+  <!--文本输入框容器-->
+  <view class="moment-hidden-locate" style="padding-bottom: {{ iuputInfo.inputBoxPaddingHeight }}px;">
+    <!--文本输入框-->
+    <textarea class="moment-hidden-input" value="{{ iuputInfo.inputCommentContent }}" auto-height focus hold-keyboard placeholder="尽情表达吧！" adjust-position="false" confirm-type="send" bindfocus="planCommentHandle" bindinput="inputCommentHandle" bindconfirm="sendComment"></textarea>
+
+    <!--发送按钮-->
+    <view class="moment-hidden-send" bind:tap="sendComment">发送</view>
+  </view>
+</view>

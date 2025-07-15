@@ -1,0 +1,186 @@
+.record-container {
+  width: 690rpx;
+  height: auto;
+  margin: 20rpx 30rpx 0 30rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  border-bottom: .5px solid #cecece;
+  box-sizing: border-box;
+}
+
+.record-main {
+  width: 690rpx;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+.record-avatar {
+  width: 90rpx;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.record-avatar-image {
+  width: 90rpx;
+  height: 90rpx;
+  border-radius: 5rpx;
+}
+
+.record-locate {
+  width: 580rpx;
+  height: auto;
+  margin-left: 20rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  box-sizing: border-box;
+}
+
+.record-nickname {
+  width: 500rpx;
+  height: auto;
+  margin-bottom: 6rpx;
+  color: #7a92a8;
+  font-size: 26rpx;
+  font-weight: bold;
+  box-sizing: border-box;
+}
+
+.record-content {
+  width: 580rpx;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.record-content-theme {
+  width: 580rpx;
+  height: auto;
+  color: #000;
+  font-size: 26rpx;
+  font-weight: bold;
+}
+
+.record-content-text {
+  width: 580rpx;
+  height: auto;
+  color: #222;
+  font-size: 26rpx;
+}
+
+.record-media {
+  width: 420rpx;
+  height: auto;
+  margin-top: 6rpx;
+  margin-bottom: 10rpx;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  box-sizing: border-box;
+}
+
+.record-func {
+  width: 580rpx;
+  height: 45rpx;
+  margin-left: 110rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+
+.record-func-time {
+  width: auto;
+  height: auto;
+  color: #777;
+  font-size: 25rpx;
+}
+
+.record-func-chat {
+  width: auto;
+  height: 45rpx;
+  margin-left: 20rpx;
+  margin-right: 6rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  box-sizing: border-box;
+}
+
+.record-func-chat-delete {
+  width: auto;
+  height: auto;
+  margin-right: 20rpx;
+  color: #555;
+  font-size: 22rpx;
+  box-sizing: border-box;
+}
+
+.record-func-chat-comment {
+  width: auto;
+  height: 30rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-content: center;
+}
+
+.record-func-chat-like {
+  width: auto;
+  height: 32rpx;
+  margin-left: 16rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-content: center;
+  box-sizing: border-box;
+}
+
+.record-comment {
+  width: 580rpx;
+  height: auto;
+  margin-top: 6rpx;
+  margin-left: 110rpx;
+  margin-bottom: 20rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  background-color: #F7F7F7;
+  box-sizing: border-box;
+}
+
+.record-comment-item {
+  width: 560rpx;
+  height: auto;
+  margin: 0 10rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  box-sizing: border-box;
+}
+
+.record-comment-item-nickname {
+  width: auto;
+  height: auto;
+  color: #7a92a8;
+  font-size: 24rpx;
+}
+
+.record-comment-item-content {
+  flex: 1;
+  width: auto;
+  height: auto;
+  color: #222;
+  font-size: 24rpx;
+}

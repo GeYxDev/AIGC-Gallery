@@ -1,0 +1,113 @@
+.modify-container {
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  background-color: #fff;
+}
+
+.modify-welcome {
+  height: 15%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+.modify-logo {
+  height: auto;
+  width: 200rpx;
+}
+
+.modify-word {
+  width: 100%;
+  text-align: center;
+  font-size: 18px;
+  font-style: italic;
+  color: #666;
+}
+
+.modify-area {
+  height: 35%;
+  width: 100%;
+  padding-top: 3%;
+  padding-left: 10%;
+  padding-right: 10%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+.modify-input-area {
+  width: 90%;
+  height: auto;
+  padding: 6px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  box-sizing: border-box;
+}
+
+.modify-input-unit {
+  width: 100%;
+  height: 35px;
+  border-bottom: .5px solid #292626;
+}
+
+.modify-input-error {
+  width: 100%;
+  height: 13px;
+  margin-top: 2px;
+  font-size: 12px;
+  color: #ff3b30;
+}
+
+.modify-input-package {
+  width: 100%;
+  height: 35px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  box-sizing: border-box;
+}
+
+.modify-input-visible {
+  width: 28px;
+  height: auto;
+  border-bottom: .5px solid #292626;
+}
+
+.modify-input-fill {
+  width: 100%;
+  height: 160rpx;
+}
+
+.modify-click-area {
+  position: relative;
+  width: 100%;
+  height: 50%;
+}
+
+.modify-click-button {
+  position: absolute;
+  width: 25%;
+  height: 35px;
+  bottom: 40%;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #555;
+  font-size: 16px;
+  border: 1px solid #777;
+  border-radius: 10px;
+  box-sizing: border-box;
+}

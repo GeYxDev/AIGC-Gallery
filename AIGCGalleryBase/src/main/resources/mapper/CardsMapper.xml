@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.mapper.CardsMapper">
+
+    <select id="selectCardList" resultType="dao.entity.Cards">
+        SELECT
+            u.nickname,
+            u.avatar,
+            u.account,
+            w.aspect_ratio,
+            w.type,
+            g.theme,
+            g.likes,
+            g.group_id,
+            CASE
+                WHEN w.type = 'image' THEN i.image
+                ELSE v.cover
+            END AS media
+        FROM
+            Groups g
+        INNER JOIN
+            Users u
+            ON u.account = g.account
+        INNER JOIN
+            Works w
+            ON w.group_id = g.group_id
+        LEFT JOIN
+            Videos v
+            ON v.work_id = w.work_id
+        LEFT JOIN
+            Images i
+            ON i.work_id = w.work_id
+        WHERE
+            w.work_id = (
+                SELECT
+                    MIN(work_id)
+                FROM
+                    works
+                WHERE
+                    group_id = g.group_id
+            )
+        ORDER BY
+            g.group_id DESC
+    </select>
+
+    <select id="selectSearchList" resultType="dao.entity.Cards">
+        SELECT
+            u.nickname,
+            u.avatar,
+            u.account,
+            w.aspect_ratio,
+            w.type,
+            g.theme,
+            g.likes,
+            g.group_id,
+            CASE
+                WHEN w.type = 'image' THEN i.image
+                ELSE v.cover
+            END AS media
+        FROM
+            Groups g
+        INNER JOIN
+            Users u
+            ON u.account = g.account
+        INNER JOIN
+            Works w
+            ON w.group_id = g.group_id
+        LEFT JOIN
+            Videos v
+            ON v.work_id = w.work_id
+        LEFT JOIN
+            Images i
+            ON i.work_id = w.work_id
+        WHERE
+            w.work_id = (
+                SELECT
+                    MIN(work_id)
+                FROM
+                    works
+                WHERE
+                    group_id = g.group_id
+            )
+            <if test="keywords != null and !keywords.isEmpty()">
+                AND (
+                    <foreach item="keyword" collection="keywords" separator=" OR ">
+                        g.theme LIKE CONCAT('%', #{keyword}, '%')
+                        OR g.content LIKE CONCAT('%', #{keyword}, '%')
+                    </foreach>
+                )
+            </if>
+        ORDER BY
+            g.group_id DESC
+    </select>
+
+</mapper>

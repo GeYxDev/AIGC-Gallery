@@ -1,0 +1,79 @@
+<!--注册页-->
+
+<!--注册页容器-->
+<view class="register-container" style="margin-top: {{ topMarginHeight }}px;">
+  <!--画廊标志以及欢迎词-->
+  <view class="register-welcome">
+    <!--画廊标志-->
+    <image class="register-logo" src="/images/aigc_gallery.png" mode="widthFix"></image>
+
+    <!--欢迎词-->
+    <text class="register-word">Welcome new artists.</text>
+  </view>
+
+  <!--注册区-->
+  <view class="register-area">
+    <!--个性化区-->
+    <view class="register-pers-area">
+      <!--头像替换区-->
+      <view class="register-pers-avatar" bind:tap="selectAvatar">
+        <image class="register-pers-image" src="{{ loginData.avatar }}" mode="widthFix"></image>
+        <view class="register-pers-replace">Avatar</view>
+      </view>
+
+      <!--昵称输入区-->
+      <view class="register-pers-input">
+        <!--昵称输入框-->
+        <input class="register-input-unit" placeholder="Create a nickname" maxlength="16" bindinput="nicknameInputChange"></input>
+
+        <!--昵称输入错误提示-->
+        <text class="register-input-error">{{ errors.nickname }}</text>
+      </view>
+    </view>
+
+    <!--账号输入区-->
+    <view class="register-input-area">
+      <!--账号输入框-->
+      <input class="register-input-unit" placeholder="New account" maxlength="20" bindinput="accountInputChange"></input>
+
+      <!--账号输入错误提示-->
+      <text class="register-input-error">{{ errors.account }}</text>
+    </view>
+
+    <!--密码输入区-->
+    <view class="register-input-area">
+    <!--密码区包装-->
+      <view class="register-input-package">
+        <!--密码输入框-->
+        <input class="register-input-unit" placeholder="Think of a password" maxlength="16" password="{{ !passwordVisibility }}" bindinput="passwordInputChange"></input>
+
+        <!--密码可视化-->
+        <image class="register-input-visible" src="{{ passwordVisibility ? '/images/visible.png' : '/images/invisible.png' }}" mode="widthFix" bind:tap="changePasswordVisibility"></image>
+      </view>
+
+      <!--密码输入错误提示-->
+      <text class="register-input-error">{{ errors.password }}</text>
+    </view>
+
+    <!--确认密码输入区-->
+    <view class="register-input-area">
+    <!--确认密码区包装-->
+      <view class="register-input-package">
+        <!--确认密码输入框-->
+        <input class="register-input-unit" placeholder="Confirm your password" maxlength="16" password="{{ !confirmPasswordVisibility }}" bindinput="confirmPasswordInputChange"></input>
+
+        <!--确认密码可视化-->
+        <image class="register-input-visible" src="{{ confirmPasswordVisibility ? '/images/visible.png' : '/images/invisible.png' }}" mode="widthFix" bind:tap="changeConfirmPasswordVisibility"></image>
+      </view>
+
+      <!--确认密码输入错误提示-->
+      <text class="register-input-error">{{ errors.confirmPassword }}</text>
+    </view>
+  </view>
+
+  <!--点按注册-->
+  <view class="register-click-area">
+    <!--注册按钮-->
+    <view class="register-click-button" bind:tap="commitRegisterOperation">注册</view>
+  </view>
+</view>

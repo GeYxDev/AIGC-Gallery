@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    "record": "/components/record/record",
+    "mp-loading": "/miniprogram_npm/weui-miniprogram/loading/loading"
+  }
+}

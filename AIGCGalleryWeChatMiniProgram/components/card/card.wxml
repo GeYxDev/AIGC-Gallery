@@ -1,0 +1,43 @@
+<!--作品展示卡片，使用直接计算的方式节省存储资源-->
+
+<!--根据内容改变高度的卡片-->
+<view class="card-container" style="height: {{ cardWidth / item.aspectRatio + 56 }}px;" bindtap="jumpToDetail">
+  <!--穿梭动画，实现过渡动画-->
+	<share-element class="card-share" key="se-key-{{ index }}" rect-tween-type="cubic-bezier(0.4, 0.0, 0.2, 1.0)" worklet:onframe="handleGradFrame" transition-on-gesture="true">
+    <!--定位容器，帮助内层定位-->
+		<view class="card-locate">
+      <!--内容显示区-->
+			<view class="card-display">
+        <!--显示图片或视频-->
+				<image class="card-media" fade-in src="{{ item.media }}" style="height: {{ cardWidth / item.aspectRatio }}px;"></image>
+        
+        <!--主题与功能区，绑定动画-->
+        <view class="card-desc">
+          <!--显示主题-->
+          <text class="card-theme" overflow="ellipsis" max-lines="1">{{ item.theme }}</text>
+          
+          <!--功能区-->
+          <view class="card-function">
+            <!--作者信息-->
+            <view class="card-ident">
+              <!--作者头像-->
+              <image class="card-avatar" src="{{ item.avatar }}"></image>
+            
+              <!--作者昵称-->
+              <text class="card-nickname" overflow="ellipsis" max-lines="1">{{ item.nickname }}</text>
+            </view>
+            
+            <!--互动信息-->
+            <view class="card-interact">
+              <!--点赞数-->
+              <text class="card-like-num" overflow="ellipsis" max-lines="1">{{ item.likes }}</text>
+
+              <!--点赞标志-->
+              <image src="/images/gray_like.png" class="card-like-icon" mode="heightFix"></image>
+            </view>
+          </view>
+        </view>
+			</view>
+		</view>
+	</share-element>
+</view>

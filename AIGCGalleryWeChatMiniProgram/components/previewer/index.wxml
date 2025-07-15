@@ -1,0 +1,7 @@
+<!--预览组件-->
+
+<!--手势控制-->
+<scale-gesture-handler tag="scale" simultaneousHandlers="{{['swiper']}}" worklet:ongesture="onScale" worklet:should-response-on-move="shouldResponseOnMove">
+  <!--预览主显示层-->
+  <preview-home id="preview-home" class="preview-home" imageId="{{ imageId }}" sourcePageId="{{ sourcePageId }}" mediaList="{{ mediaList }}" mediaType="{{ mediaType }}"></preview-home>
+</scale-gesture-handler>

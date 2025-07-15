@@ -1,0 +1,7 @@
+<!--媒体浏览页，实现对关注圈内预览的媒体浏览-->
+
+<!--媒体浏览-->
+<view class="preview-cotainer">
+  <!--浏览组件，具体实现交由该组件-->
+  <previewer class="preview-main" imageId="{{ imageId }}" sourcePageId="{{ sourcePageId }}" mediaList="{{ mediaList }}" mediaType="{{ mediaType }}"></previewer>
+</view>

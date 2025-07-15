@@ -1,0 +1,20 @@
+<!--主页面，根据TarBar切换不同的功能页-->
+
+<!--导航栏-->
+<navigation id="main-navigation"></navigation>
+
+<!--页面替换容器-->
+<view class="view-container" style="margin-top: {{ topMarginHeight }}px; margin-bottom: {{ bottomMarginHeight }}px;"
+>
+  <!--主页-->
+  <roam wx:if="{{ currentView === 'roam' }}"></roam>
+
+  <!--创作-->
+  <imagine wx:if="{{ currentView === 'imagine' }}"></imagine>
+
+  <!--动态-->
+  <moment wx:if="{{ currentView === 'news' }}"></moment>
+</view>
+
+<!--页面切换栏-->
+<tarbar id="main-tarbar" bind:nav="handleChooseAndJumpEvent"></tarbar>

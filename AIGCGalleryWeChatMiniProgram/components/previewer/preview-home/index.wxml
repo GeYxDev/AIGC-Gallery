@@ -1,0 +1,14 @@
+<view class="preview-extra middle preview-middle-self"></view>
+<view class="preview-cnt">
+  <view class="need-hide-on-back">
+    <preview-list class="preview-list" style="opacity: {{ mediaType === 'video' ? '0' : '1' }};" index="{{ index }}" mediaList="{{ mediaList }}" bindbeforerender="onBeforeRender"></preview-list>
+  </view>
+  <share-element key="se-key-{{ mediaList[tempIndex] && mediaList[tempIndex].id }}" class="share-element-image need-transform-on-back" style="z-index: {{ mediaType === 'video' ? '30' : '-1' }};" shuttleOnPush="to">
+    <view class="temp-image" wx:if="{{ mediaType === 'image' }}">
+      <image src="{{ mediaList[tempIndex] && mediaList[tempIndex].src }}" mode="aspectFit"></image>
+    </view>
+    <view class="preview-video" wx:if="{{ mediaType === 'video' }}">
+      <video class="video" style="width: {{ mediaWidth }}px; height: {{ mediaHeight }}px;" src="{{ mediaList[0].videoLink }}" autoplay loop show-fullscreen-btn="false"></video>
+    </view>
+  </share-element>
+</view>

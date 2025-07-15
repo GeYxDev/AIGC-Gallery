@@ -1,0 +1,23 @@
+<!--主页：推荐内容浏览，可根据模型针对不同用户产生推荐-->
+<!--使用原生级卡片转场-->
+
+<!--主页-->
+<view class="roam-container" style="height: {{ displayAreaHeight }}px;">
+  <!--首次加载提示-->
+  <mp-loading class="first-load" wx:if="{{ showFirstLoading }}" type="dot-gray"></mp-loading>
+  
+  <!--加载失败提示-->
+  <text class="fail-load" wx:if="{{ showFailLoad }}" bind:tap="openLoadArt">加载失败，点击重试</text>
+
+  <!--滚动容器-->
+  <scroll-view class="scroll-container" style="height: {{ displayAreaHeight }}px;" scroll-y type="custom" show-scrollbar="{{ false }}" enhanced bindscrolltolower="onReachBottom">
+    <!--瀑布流作品显示-->
+    <grid-view type="masonry" cross-axis-count="2" cross-axis-gap="6">
+      <!--作品展示卡片-->
+      <card wx:for="{{ artList }}" wx:key="groupId" card-width="{{ cardWidth }}" index="{{ index }}" item="{{ item }}"></card>
+    </grid-view>
+    
+    <!--继续加载提示-->
+    <text class="next-load">{{ nextLoadTip }}</text>
+  </scroll-view>
+</view>

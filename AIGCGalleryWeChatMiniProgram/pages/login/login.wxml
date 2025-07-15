@@ -1,0 +1,47 @@
+<!--登录页-->
+
+<!--登录页容器-->
+<view class="login-container" style="margin-top: {{ topMarginHeight }}px;">
+  <!--画廊标志以及欢迎词-->
+  <view class="login-welcome">
+    <!--画廊标志-->
+    <image class="login-logo" src="/images/aigc_gallery.png" mode="widthFix"></image>
+
+    <!--欢迎词-->
+    <text class="login-word">Let's get started.</text>
+  </view>
+
+  <!--登录区-->
+  <view class="login-area">
+    <!--账号输入区-->
+    <view class="login-input-area">
+      <!--账号输入框-->
+      <input class="login-input-unit" placeholder="Account" maxlength="20" bindinput="accountInputChange"></input>
+
+      <!--账号输入错误提示-->
+      <text class="login-input-error">{{ errors.account }}</text>
+    </view>
+
+    <!--密码输入区-->
+    <view class="login-input-area">
+    <!--密码区包装-->
+      <view class="login-input-package">
+        <!--密码输入框-->
+        <input class="login-input-unit" placeholder="Password" maxlength="16" password="{{ !passwordVisibility }}" bindinput="passwordInputChange"></input>
+
+        <!--密码可视化-->
+        <image class="login-input-visible" src="{{ passwordVisibility ? '/images/visible.png' : '/images/invisible.png' }}" mode="widthFix" bind:tap="changeVisibility"></image>
+      </view>
+
+      <!--密码输入错误提示-->
+      <text class="login-input-error">{{ errors.password }}</text>
+    </view>
+  </view>
+
+  <!--点按登录或注册-->
+  <view class="login-click-area">
+    <!--登录按钮-->
+    <view class="login-click-button" bind:tap="commitLoginOperation">登录</view>
+    <view class="login-click-register" bind:tap="jumpToRegistration">去注册→</view>
+  </view>
+</view>

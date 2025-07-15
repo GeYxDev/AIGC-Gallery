@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "mp-actionSheet": "/miniprogram_npm/weui-miniprogram/actionsheet/actionsheet",
+    "mp-loading": "/miniprogram_npm/weui-miniprogram/loading/loading"
+  }
+}

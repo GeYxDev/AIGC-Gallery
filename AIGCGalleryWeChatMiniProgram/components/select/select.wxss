@@ -1,0 +1,30 @@
+.select-container {
+  width: auto;
+  height: 50rpx;
+  padding: 5rpx 10rpx;
+  margin-right: 10rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  border: 2rpx solid #d9d9d9;
+  border-radius: 10rpx;
+  box-sizing: border-box;
+}
+
+.select-text {
+  width: auto;
+  height: 40rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #222;
+  font-size: 22rpx;
+}
+
+.select-icon {
+  width: 30rpx;
+  height: 40rpx;
+  padding: 10rpx 5rpx;
+  box-sizing: border-box;
+}

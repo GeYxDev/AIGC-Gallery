@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "previewer": "/components/previewer/index"
+  },
+  "backgroundColorContent": "#00000000",
+  "disableScroll": true
+}

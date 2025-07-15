@@ -1,0 +1,13 @@
+<!--动态图片或视频封面，可通过点击进行预览-->
+
+<!--可预览动态媒体-->
+<view class="media-container" style="width: {{ mediaWidth }}px; height: {{ mediaHeight }}px;">
+  <!--穿梭动画，实现过渡动画-->
+  <share-element class="media-share" key="se-key-{{ workId }}" rect-tween-type="cubic-bezier(0.4, 0, 0.2, 1.0)" worklet:onframe="handleGradFrame" transition-on-gesture="true">
+    <!--媒体定位容器-->
+    <view class="media-locate">
+      <!--媒体-->
+      <image class="media-image" mode="aspectFill" bindload="mediaLoadFinishCallback" src="{{ media }}"></image>
+    </view>
+  </share-element>
+</view>

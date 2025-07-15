@@ -1,0 +1,61 @@
+<!--关注圈动态，仿照朋友圈样式-->
+
+<!--固定宽度的变高动态-->
+<view class="record-container">
+  <!--动态主内容区-->
+  <view class="record-main">
+    <!--用户头像-->
+    <view class="record-avatar">
+      <image class="record-avatar-image" src="{{ item.avatar }}"></image>
+    </view>
+
+    <!--昵称与主要内容-->
+    <view class="record-locate">
+      <!--用户昵称-->
+      <text class="record-nickname" overflow="ellipsis" max-lines="1">{{ item.nickname }}</text>
+
+      <!--用户主题与正文-->
+      <view class="record-content">
+        <!--用户主题-->
+        <text class="record-content-theme">{{ item.theme }}</text>
+
+        <!--用户正文-->
+        <text class="record-content-text">{{ item.text }}</text>
+      </view>
+
+      <!--用户图片或视频-->
+      <view class="record-media">
+        <!--用户图片展示-->
+        <media wx:if="{{ item.type === 'image' }}" wx:for="{{ item.media }}" wx:for-item="imageItem" wx:key="workId" data-index="{{ index }}" work-id="{{ imageItem.workId }}" media="{{ imageItem.image }}" media-width="{{ convRate * (item.workNum === 1 ? (item.aspectRatio >= 1 ? 360 : 360 * item.aspectRatio) : 130) }}" media-height="{{ convRate * (item.workNum === 1 ? (item.aspectRatio >= 1 ? 360 / item.aspectRatio : 360) : 130) }}" bind:tap="onTapMedia"></media>
+
+        <!--用户视频展示-->
+        <media wx:if="{{ item.type === 'video' }}" work-id="{{ item.media.workId }}" media="{{ item.media.cover }}" media-width="{{ convRate * (item.aspectRatio >= 1 ? 360 : 360 * item.aspectRatio) }}" media-height="{{ convRate * (item.aspectRatio >= 1 ? 360 / item.aspectRatio : 360) }}" bind:tap="onTapMedia"></media>
+      </view>
+    </view>
+  </view>
+
+  <!--动态功能区-->
+  <view class="record-func">
+    <!--动态发布时间-->
+    <text class="record-func-time" overflow="ellipsis" max-lines="1">{{ item.createTime }}</text>
+
+    <!--互动设置-->
+    <view class="record-func-chat">
+      <!--删除-->
+      <view class="record-func-chat-delete" wx:if="{{ item.account === account }}" bind:tap="handleDeleteMyMomentOperation">删除</view>
+      <!--评论-->
+      <image class="record-func-chat-comment" src="/images/comment.png" mode="heightFix" bind:tap="handleAddCommentOperation"></image>
+      <!--点赞-->
+      <image class="record-func-chat-like" src="{{ isSelectLike ? '/images/red_heart.png' : '/images/linear_heart.png' }}" mode="heightFix" bind:tap="handleAddLikeOperation"></image>
+    </view>
+  </view>
+
+  <!--评论区-->
+  <view class="record-comment">
+    <!--单项评论-->
+    <view class="record-comment-item" wx:for="{{ item.comment }}" wx:for-item="commentItem" wx:key="commentId">
+      <!--昵称与内容嵌套显示-->
+      <text class="record-comment-item-nickname">{{ commentItem.nickname }}：<text class="record-comment-item-content">{{ commentItem.content }}</text></text>
+    </view>
+  </view>
+</view>

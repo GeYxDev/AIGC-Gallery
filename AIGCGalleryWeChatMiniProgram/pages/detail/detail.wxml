@@ -1,0 +1,119 @@
+<!--细节显示页面，继承Cards的内容并加载详细内容-->
+
+<!--返回手势识别-->
+<pan-gesture-handler worklet:ongesture="handleReturnGesture">
+  <!--细节显示页-->
+	<view class="detail-container">
+    <!--用户交互导航栏-->
+		<view class="navigation-bar" style="height: {{ navigationBarHeight }}px;">
+      <!--导航栏内容-->
+      <view class="navigation-content" style="margin-top: {{ menuButtonTopPaddingHeight }}px; height: {{ menuButtonHeight }}px; padding-right: {{ menuButtonLeftBorder }}px;">
+        <!--发布者头像-->
+        <image class="navigation-avatar" src="{{ avatar }}" mode="heightFix"></image>
+        
+        <!--发布者昵称-->
+        <text class="navigation-nickname" overflow="ellipsis" max-lines="1">{{ nickname }}</text>
+        
+        <!--发布者关注按钮-->
+        <view class="navigation-follow {{ isSelectFollow ? 'followed' : 'not-followed' }}" bind:tap="handleFollowOperation">{{ isSelectFollow ? '已关注' : '+关注' }}</view>
+      </view>
+    </view>
+
+    <!--穿梭动画，实现过渡动画-->
+    <share-element key="se-key-{{ index }}" shuttle-on-push="from" transition-on-gesture="true" rect-tween-type="cubic-bezier(0.4, 0.0, 0.2, 1.0)" class="detail-share">
+      <!--穿梭动画占位块-->
+      <view></view>
+    </share-element>
+
+    <!--艺术内容显示与交互区-->
+    <scroll-view scroll-y class="detail-display" style="height: {{ scrollAreaHeight }}px;" type="list" show-scrollbar="{{ false }}" enhanced>
+      <!--照片显示与滑动交互-->
+      <swiper class="detail-swiper" wx:if="{{ type === 'image' }}" style="height: {{ pageWidth / aspectRatio }}px;">
+        <!--封面图-->
+        <swiper-item>
+          <image class="detail-image" mode="widthFix" src="{{ media }}"></image>
+        </swiper-item>
+        
+        <!--后续图-->
+        <swiper-item wx:for="{{ post.mediaDetailList }}" wx:for-item="mediaItem" wx:key="workId">
+          <image class="detail-image" mode="aspectFit" src="{{ mediaItem.image }}"></image>
+        </swiper-item>
+      </swiper>
+
+      <!--视频显示-->
+      <video class="detail-swiper" wx:if="{{ type === 'video' }}" src="{{ post.mediaDetailList[0].videoLink }}" style="height: {{ pageWidth / aspectRatio }}px;"></video>
+
+      <!--主题与正文-->
+      <view class="detail-content">
+        <!--主题-->
+        <text class="detail-theme">{{ theme }}</text>
+        
+        <!--正文-->
+        <text class="detail-text">{{ post.text }}</text>
+
+        <!--时间-->
+        <text class="detail-time">{{ post.createTime }}</text>
+      </view>
+
+      <!--评论板块-->
+      <view class="detail-comment">
+        <!--循环加载全部评论-->
+        <block wx:for="{{ comment }}" wx:for-item="commentItem" wx:key="commentId">
+          <!--单个评论-->
+          <view class="detail-comment-item">
+            <!--评论相关信息-->
+            <view class="detail-comment-item-info">
+              <!--评论者头像-->
+              <image class="detail-comment-item-avatar" src="{{ commentItem.avatar }}"></image>
+              
+              <!--评论者昵称与发布时间-->
+              <view class="detail-comment-item-desc">
+                <!--评论者昵称-->
+                <text class="detail-comment-item-nickname" overflow="ellipsis" max-lines="1">{{ commentItem.nickname }}</text>
+
+                <!--评论时间-->
+                <text class="detail-comment-item-time" overflow="ellipsis" max-lines="1">{{ commentItem.createTime }}</text>
+              </view>
+            </view>
+
+            <!--评论正文-->
+            <text class="detail-comment-content">{{ commentItem.content }}</text>
+          </view>
+        </block>
+
+        <!--无评论或评论加载失败信息-->
+        <text class="detail-comment-fail" wx:if="{{ commentUsualInfo !== '' }}">{{ commentUsualInfo }}</text>
+      </view>
+    </scroll-view>
+    
+    <!--想法表达-->
+    <view class="detail-func" style="margin-bottom: {{ safeAreaBottomHeight }}px;">
+      <!--评论-->
+      <view class="detail-func-edit" bind:tap="rouseInputBox">说点什么...</view>
+
+      <!--点赞数与点赞-->
+      <view class="detail-func-like">
+        <!--点赞数-->
+        <text class="detail-func-like-num">{{ likes }}</text>
+
+        <!--点赞-->
+        <image class="detail-func-like-add" src="{{ isSelectLike ? '/images/red_like.png' : '/images/linear_like.png' }}" mode="heightFix" bind:tap="handleAddLikeOperation"></image>
+      </view>
+    </view>
+  </view>
+</pan-gesture-handler>
+
+<!--隐藏式文本输入框和聚焦弱化层-->
+<view class="detail-hidden-cover" wx:if="{{ iuputInfo.showInputBox }}">
+  <!--触摸取消区-->
+  <view class="detail-hidden-cancel" bind:tap="cancelCommentHandle"></view>
+
+  <!--文本输入框容器-->
+  <view class="detail-hidden-locate" style="padding-bottom: {{ iuputInfo.inputBoxPaddingHeight }}px;">
+    <!--文本输入框-->
+    <textarea class="detail-hidden-input" value="{{ iuputInfo.inputCommentContent }}" auto-height focus hold-keyboard placeholder="尽情表达吧！" adjust-position="false" confirm-type="send" bindfocus="planCommentHandle" bindinput="inputCommentHandle" bindconfirm="sendComment"></textarea>
+
+    <!--发送按钮-->
+    <view class="detail-hidden-send" bind:tap="sendComment">发送</view>
+  </view>
+</view>

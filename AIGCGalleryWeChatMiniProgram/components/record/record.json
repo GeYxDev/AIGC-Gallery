@@ -1,0 +1,6 @@
+{
+  "component": true,
+  "usingComponents": {
+    "media": "/components/media/media"
+  }
+}

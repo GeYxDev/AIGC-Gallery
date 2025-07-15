@@ -1,0 +1,30 @@
+{
+  "pages": [
+    "pages/welcome/welcome",
+    "pages/main/main",
+    "pages/detail/detail",
+    "pages/login/login",
+    "pages/register/register",
+    "pages/individual/individual",
+    "pages/modify/modify",
+    "pages/preview/preview"
+  ],
+  "window": {
+    "navigationStyle": "custom"
+  },
+  "style": "v2",
+  "renderer": "skyline",
+  "rendererOptions": {
+    "skyline": {
+      "defaultDisplayBlock": true,
+      "defaultContentBox": true,
+      "tagNameStyleIsolation": "legacy",
+      "disableABTest": true,
+      "sdkVersionBegin": "3.0.0",
+      "sdkVersionEnd": "15.255.255"
+    }
+  },
+  "componentFramework": "glass-easel",
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents"
+}

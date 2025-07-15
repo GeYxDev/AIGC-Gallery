@@ -1,0 +1,81 @@
+-- 创建AIGCGalleryDB数据库
+CREATE DATABASE AIGCGalleryDB;
+GO
+
+-- 切换到AIGCGalleryDB数据库
+USE AIGCGalleryDB;
+GO
+
+-- 创建用户表
+CREATE TABLE Users (
+    account VARCHAR(50) PRIMARY KEY NOT NULL,
+    password CHAR(32) NOT NULL,
+    nickname VARCHAR(50) NOT NULL,
+    avatar TEXT NULL
+);
+GO
+
+-- 创建关注表
+CREATE TABLE Follows (
+    follower_account VARCHAR(50) NOT NULL,
+    followed_account VARCHAR(50) NOT NULL,
+    PRIMARY KEY (follower_account, followed_account),
+    FOREIGN KEY (follower_account) REFERENCES Users(account),
+    FOREIGN KEY (followed_account) REFERENCES Users(account)
+);
+GO
+
+-- 创建动态表
+CREATE TABLE [Groups] (
+    group_id INT IDENTITY(1,1) PRIMARY KEY,
+    account VARCHAR(50) NOT NULL,
+    theme VARCHAR(50) NOT NULL,
+    content TEXT NOT NULL,
+    likes INT DEFAULT 0 NOT NULL,
+    create_time DATETIME NOT NULL,
+    FOREIGN KEY (account) REFERENCES Users(account)
+);
+GO
+
+-- 创建作品元数据表
+CREATE TABLE Works (
+    work_id INT IDENTITY(1,1) PRIMARY KEY,
+    group_id INT NOT NULL,
+    aspect_ratio FLOAT NOT NULL,
+    type VARCHAR(10) NOT NULL CHECK (type IN ('video', 'image')),
+    media_width INT NOT NULL,
+    media_height INT NOT NULL,
+    model_type VARCHAR(50) NOT NULL,
+    iteration INT DEFAULT 0 NOT NULL,
+    FOREIGN KEY (group_id) REFERENCES [Groups](group_id)
+);
+GO
+
+-- 创建视频作品表
+CREATE TABLE Videos (
+    work_id INT PRIMARY KEY,
+    cover TEXT NOT NULL,
+    video_link VARCHAR(255) NOT NULL,
+    FOREIGN KEY (work_id) REFERENCES Works(work_id)
+);
+GO
+
+-- 创建图片作品表
+CREATE TABLE Images (
+    work_id INT PRIMARY KEY,
+    image TEXT NOT NULL,
+    FOREIGN KEY (work_id) REFERENCES Works(work_id)
+);
+GO
+
+-- 创建评论表
+CREATE TABLE Comments (
+    comment_id INT IDENTITY(1,1) PRIMARY KEY,
+    group_id INT NOT NULL,
+    account VARCHAR(50) NOT NULL,
+    content TEXT NOT NULL,
+    create_time DATETIME NOT NULL,
+    FOREIGN KEY (group_id) REFERENCES [Groups](group_id),
+    FOREIGN KEY (account) REFERENCES Users(account)
+);
+GO

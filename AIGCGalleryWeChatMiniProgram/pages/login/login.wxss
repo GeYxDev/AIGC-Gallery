@@ -1,0 +1,121 @@
+.login-container {
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  background-color: #fff;
+}
+
+.login-welcome {
+  height: 15%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+.login-logo {
+  height: auto;
+  width: 200rpx;
+}
+
+.login-word {
+  width: 100%;
+  text-align: center;
+  font-size: 18px;
+  font-style: italic;
+  color: #666;
+}
+
+.login-area {
+  height: 35%;
+  width: 100%;
+  padding: 0 10%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+.login-input-area {
+  width: 90%;
+  height: auto;
+  padding: 10% 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  box-sizing: border-box;
+}
+
+.login-input-unit {
+  width: 100%;
+  height: 35px;
+  border-bottom: .5px solid #292626;
+}
+
+.login-input-error {
+  width: 100%;
+  height: 13px;
+  margin-top: 2px;
+  font-size: 12px;
+  color: #ff3b30;
+}
+
+.login-input-package {
+  width: 100%;
+  height: 35px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  box-sizing: border-box;
+}
+
+.login-input-visible {
+  width: 28px;
+  height: auto;
+  border-bottom: .5px solid #292626;
+}
+
+.login-click-area {
+  position: relative;
+  width: 100%;
+  height: 50%;
+}
+
+.login-click-button {
+  position: absolute;
+  width: 30%;
+  height: 35px;
+  bottom: 40%;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #555;
+  font-size: 16px;
+  border: 1px solid #777;
+  border-radius: 10px;
+  box-sizing: border-box;
+}
+
+.login-click-register {
+  position: absolute;
+  width: 30%;
+  height: 7%;
+  bottom: 33%;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  color: #999;
+  font-size: 12px;
+  box-sizing: border-box;
+}

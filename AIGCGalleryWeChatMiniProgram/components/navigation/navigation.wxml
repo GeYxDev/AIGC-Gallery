@@ -1,0 +1,20 @@
+<!--导航栏-->
+<view class="navigation-bar" style="height: {{ navigationBarHeight }}px;">
+  <!--导航栏内容-->
+  <view class="navigation-content" style="margin-top: {{ menuButtonTopPaddingHeight }}px; height: {{ menuButtonHeight }}px; margin-left: {{ menuButtonRightPaddingWidth }}px; max-width: {{ navigationContentMaxWidth }}px;" bind:tap="jumpToLoginOrIndividual">
+    <!--发布者头像-->
+    <image class="navigation-avatar" wx:if="{{ loginInfo.loginStatus === 'true' }}" src="{{ loginInfo.loginAvatar }}" mode="heightFix"></image>
+
+    <!--默认头像-->
+    <image class="navigation-avatar-default" wx:else src="/images/default_user.png" mode="heightFix"></image>
+    
+    <!--导航栏文字区-->
+    <view class="navigation-textarea">
+      <!--发布者昵称-->
+      <text class="navigation-textarea-nickname" overflow="ellipsis" max-lines="1">{{ loginInfo.loginStatus === 'true' ? loginInfo.loginNickname : '请点击登录' }}</text>
+
+      <!--个人中心提示-->
+      <text class="navigation-textarea-prompt">个人中心</text>
+    </view>
+  </view>
+</view>

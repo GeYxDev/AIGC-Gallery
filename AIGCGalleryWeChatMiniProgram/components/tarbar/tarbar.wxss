@@ -1,0 +1,69 @@
+.tarbar-container {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100vw;
+  display: flex;
+  min-height: 95rpx;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+  background-color: #fff;
+}
+
+.tarbar-response {
+  height: 95rpx;
+  width: 100vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.tarbar-nav-button {
+  display: flex;
+  flex: 1;
+  height: 82rpx;
+  width: 100vw;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.tarbar-nav-icon {
+  width: 50rpx;
+  height: 50rpx;
+}
+
+.tarbar-nav-text.inactive-text {
+  font-size: 24rpx;
+  color: #8a8a8a;
+}
+
+.tarbar-nav-text.active-text {
+  font-size: 24rpx;
+  color: #515151;
+}
+
+.tarbar-nav-center {
+  width: 65rpx;
+  height: 65rpx;
+  margin-bottom: 12rpx;
+  border-radius: 30%;
+  background-color: #707070;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.tarbar-nav-center-icon {
+  width: 90%;
+  height: 90%;
+}
+
+.tarbar-safe {
+  width: 100vw;
+  background-color: #fff;
+}

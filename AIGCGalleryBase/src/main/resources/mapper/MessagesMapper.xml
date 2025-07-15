@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.mapper.MessagesMapper">
+
+    <select id="selectCommentList" resultType="dao.entity.Messages">
+        SELECT
+            Users.nickname,
+            Users.avatar,
+            Comments.comment_id,
+            Comments.content,
+            Comments.create_time
+        FROM
+            Comments
+                INNER JOIN
+            Users
+            ON
+                Comments.account = Users.account
+        WHERE
+            Comments.group_id = #{groupId}
+    </select>
+
+</mapper>
