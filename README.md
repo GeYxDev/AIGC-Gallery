@@ -15,3 +15,6 @@ Spring Boot可在Java21上正常运行，若要更换Java版本请先行测试�
 AI画廊计算节点存放在AIGCGalleryCreator文件夹中，运行creator.py文件即可启动作品创作服务。
 运行前请安装需要的包，diffusers包请从根目录下的diffusers文件夹中编译安装，为了显示生成进度以及实现生成中断的操作，该代码与官方代码有所不同。
 可运行checkpoints文件夹下的download.py文件，下载所需模型权重。
+
+# 许可证
+本项目根据GNU通用公共许可证第三版（GPLv3）获得许可，它包括根据不同条款获得许可的第三方组件，详情请参阅`NOTICE`文件。
